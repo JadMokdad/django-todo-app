@@ -65,11 +65,21 @@ class App extends Component {
   handleSubmit = (item) => {
     this.toggle();
 
-    alert("save" + JSON.stringify(item));
+    if (item.id) {
+      axios
+          .put(`/api/todos/${item.id}/`, item)
+          .then((res) => this.refreshList());
+      return;
+    }
+    axios
+        .post("/api/todos/", item)
+        .then((res) => this.refreshList());
   };
 
   handleDelete = (item) => {
-    alert("delete" + JSON.stringify(item));
+    axios
+        .delete(`/api/todos/${item.id}/`)
+        .then((res) => this.refreshList());
   };
 
   createItem = () => {
