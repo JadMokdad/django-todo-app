@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Modal from "./components/Modal";
+import axios from "axios";
 
 const todoItems = [
   {
@@ -33,7 +34,7 @@ class App extends Component {
     super(props);
     this.state = {
       viewCompleted: false,
-      todoList: todoItems,
+      todoList: [],
       modal: false,
       activeItem: {
         title: "",
@@ -42,6 +43,20 @@ class App extends Component {
       },
     };
   }
+
+  componentDidMount() {
+    this.refreshList();
+  }
+
+  refreshList = () => {
+    axios
+        .get("/api/todos/")
+        .then((res) => {
+          console.log(`Got data from api: ${JSON.stringify(res.data)}`);
+          this.setState({ todoList: res.data });
+        })
+        .catch((err) => console.log(err));
+  };
 
   toggle = () => {
     this.setState({ modal: !this.state.modal });
