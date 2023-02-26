@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
 
+const getAxiosClient = () => {
+  return axios.create({
+    // todo: change to environment variables
+    // baseURL: 'http://localhost:8000', // local development
+    baseURL: 'https://calm-peak-56272.herokuapp.com',
+  })
+};
+
 const todoItems = [
   {
     id: 1,
@@ -49,7 +57,7 @@ class App extends Component {
   }
 
   refreshList = () => {
-    axios
+    getAxiosClient()
         .get("/api/todos/")
         .then((res) => {
           console.log(`Got data from api: ${JSON.stringify(res.data)}`);
@@ -66,18 +74,18 @@ class App extends Component {
     this.toggle();
 
     if (item.id) {
-      axios
+      getAxiosClient()
           .put(`/api/todos/${item.id}/`, item)
           .then((res) => this.refreshList());
       return;
     }
-    axios
+    getAxiosClient()
         .post("/api/todos/", item)
         .then((res) => this.refreshList());
   };
 
   handleDelete = (item) => {
-    axios
+    getAxiosClient()
         .delete(`/api/todos/${item.id}/`)
         .then((res) => this.refreshList());
   };
