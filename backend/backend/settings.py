@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--nkf7=mf@o3d_p00&yexk0sz33-0=cl6qt@isocl^q2!p&jffz'
+# SECRET_KEY = 'django-insecure--nkf7=mf@o3d_p00&yexk0sz33-0=cl6qt@isocl^q2!p&jffz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -130,3 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000'
 ]
+
+# Configure Django App for Heroku.
+import django_on_heroku
+django_on_heroku.settings(locals())
