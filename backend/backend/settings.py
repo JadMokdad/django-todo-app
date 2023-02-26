@@ -132,5 +132,8 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 # Configure Django App for Heroku.
+
+CSRF_TRUSTED_ORIGINS = ["https://calm-peak-56272.herokuapp.com"]
+
 import django_on_heroku
 django_on_heroku.settings(locals())
