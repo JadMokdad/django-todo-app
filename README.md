@@ -55,3 +55,11 @@ More about Django framework https://www.djangoproject.com/start/
 ### Frontend
 
 For frontend development checkout README.md under frontend module.
+
+### Testing
+
+Deployed on heroku and using Heroku Postgres add-on.
+https://calm-peak-56272.herokuapp.com/
+
+The frontend is hosted on:
+https://peaceful-citadel-47725.herokuapp.com/
